@@ -118,8 +118,10 @@ if predict:
         st.altair_chart((bars + zero).properties(height=180), use_container_width=True)
 
         with st.expander("ดู lexical features ที่โมเดลใช้กับ URL นี้"):
-            feats = pd.Series(extract_lexical_features(X)[0], index=FEATURE_NAMES, name="value")
-            st.dataframe(feats.to_frame(), use_container_width=True)
+            keep = info.get("lexical_keep_idx") or list(range(len(FEATURE_NAMES)))
+            feats = pd.DataFrame(extract_lexical_features(X, keep=keep),
+                                 columns=[FEATURE_NAMES[i] for i in keep])
+            st.dataframe(feats, use_container_width=True, hide_index=True)
 
 st.divider()
 with st.expander("ℹ️ เกี่ยวกับโมเดล"):
@@ -129,7 +131,8 @@ with st.expander("ℹ️ เกี่ยวกับโมเดล"):
         m1.metric("Accuracy (Test)", f"{s.get('accuracy', 0):.2%}")
         m2.metric("Macro F1 (Test)", f"{s.get('f1_macro', 0):.4f}")
         m3.metric("Macro Recall (Test)", f"{s.get('recall_macro', 0):.4f}")
-        st.write(f"โมเดล: **{info.get('model')}** (TF-IDF char 3–5-grams + lexical features 27 ตัว), "
+        st.write(f"โมเดล: **{info.get('model')}** (กลุ่ม {info.get('group')}: TF-IDF {info.get('n_ngrams', 0):,} n-grams "
+                 f"+ lexical features {len(info.get('lexical_features', []))} ตัว), "
                  f"ฝึกด้วย {info.get('train_rows', 0):,} URLs และทดสอบกับ {info.get('test_rows', 0):,} URLs ที่แยก hostname จากชุดฝึก")
     st.write("Dataset: Malicious URLs Dataset (Kaggle, sid321axn)")
     st.warning("ข้อจำกัด: ใน Dataset นี้ URL ปกติส่วนใหญ่เขียนแบบไม่มี `http(s)://www.` และมี path ยาว "

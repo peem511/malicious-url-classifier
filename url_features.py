@@ -75,12 +75,16 @@ def extract_one_url(value: str) -> list[float]:
     ]
 
 
-def extract_lexical_features(values) -> np.ndarray:
-    """แปลงรายการ URL เป็น matrix (n, 27) ใช้กับ sklearn FunctionTransformer"""
-    return np.asarray(
+def extract_lexical_features(values, keep=None) -> np.ndarray:
+    """แปลงรายการ URL เป็น matrix (n, 27) ใช้กับ sklearn FunctionTransformer
+
+    keep = รายการ index ของ features ที่เลือกไว้ (Feature Selection) ถ้าไม่ระบุจะคืนครบ 27 ตัว
+    """
+    X = np.asarray(
         [extract_one_url(v) for v in np.asarray(values, dtype=object).ravel()],
         dtype=np.float32,
     )
+    return X if keep is None else X[:, list(keep)]
 
 
 def prepare_single_url(value: str) -> str:

@@ -1,53 +1,84 @@
 {
-  "model":"Hybrid LinearSVC",
-  "C":1.0,
-  "lexical_weight":2.0,
-  "labels":[
+  "model": "Hybrid LinearSVC",
+  "group": "Hybrid",
+  "params": {
+    "C": 1
+  },
+  "lexical_weight": 2.0,
+  "n_ngrams": 20000,
+  "lexical_keep_idx": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    24,
+    25,
+    26
+  ],
+  "lexical_features": [
+    "url_length",
+    "host_length",
+    "path_length",
+    "query_length",
+    "subdomain_count",
+    "path_depth",
+    "query_param_count",
+    "digit_count",
+    "alpha_count",
+    "special_count",
+    "dot_count",
+    "hyphen_count",
+    "slash_count",
+    "percent_count",
+    "equals_count",
+    "underscore_count",
+    "is_https",
+    "host_is_ip",
+    "has_port",
+    "suspicious_word",
+    "entropy",
+    "host_digit_count"
+  ],
+  "labels": [
     "benign",
     "defacement",
     "phishing",
     "malware"
   ],
-  "train_rows":512808,
-  "test_rows":128203,
-  "test_scores":{
-    "accuracy":0.9425,
-    "precision_macro":0.9228,
-    "recall_macro":0.9121,
-    "f1_macro":0.9154
+  "train_rows": 512808,
+  "test_rows": 128203,
+  "test_scores": {
+    "accuracy": 0.9486,
+    "precision_macro": 0.9279,
+    "recall_macro": 0.9121,
+    "f1_macro": 0.9192
   },
-  "comparison":{
-    "Hybrid LinearSVC":{
-      "f1_macro":0.9154,
-      "accuracy":0.9425
-    },
-    "LinearSVC":{
-      "f1_macro":0.9141,
-      "accuracy":0.9421
-    },
-    "LogisticRegression":{
-      "f1_macro":0.883,
-      "accuracy":0.9066
-    },
-    "RandomForest":{
-      "f1_macro":0.8751,
-      "accuracy":0.9113
-    },
-    "KNN (k=5)":{
-      "f1_macro":0.8508,
-      "accuracy":0.8989
-    },
-    "DecisionTree":{
-      "f1_macro":0.7974,
-      "accuracy":0.8529
-    },
-    "ComplementNB":{
-      "f1_macro":0.7826,
-      "accuracy":0.8535
-    },
-    "Dummy (majority)":{
-      "f1_macro":0.2002,
-      "accuracy":0.6678
-    }
+  "validation_screening": {
+    "Hybrid LinearSVC": 0.8913,
+    "LinearSVC": 0.8888,
+    "Hybrid LogisticRegression": 0.882,
+    "LogisticRegression": 0.8817,
+    "RandomForest": 0.8544,
+    "LightGBM": 0.8505,
+    "XGBoost": 0.849,
+    "CatBoost": 0.8444,
+    "KNN": 0.8385,
+    "DecisionTree": 0.8093,
+    "ComplementNB": 0.7435
   }
 }
