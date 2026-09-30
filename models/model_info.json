@@ -1,0 +1,53 @@
+{
+  "model":"Hybrid LinearSVC",
+  "C":1.0,
+  "lexical_weight":2.0,
+  "labels":[
+    "benign",
+    "defacement",
+    "phishing",
+    "malware"
+  ],
+  "train_rows":512808,
+  "test_rows":128203,
+  "test_scores":{
+    "accuracy":0.9425,
+    "precision_macro":0.9228,
+    "recall_macro":0.9121,
+    "f1_macro":0.9154
+  },
+  "comparison":{
+    "Hybrid LinearSVC":{
+      "f1_macro":0.9154,
+      "accuracy":0.9425
+    },
+    "LinearSVC":{
+      "f1_macro":0.9141,
+      "accuracy":0.9421
+    },
+    "LogisticRegression":{
+      "f1_macro":0.883,
+      "accuracy":0.9066
+    },
+    "RandomForest":{
+      "f1_macro":0.8751,
+      "accuracy":0.9113
+    },
+    "KNN (k=5)":{
+      "f1_macro":0.8508,
+      "accuracy":0.8989
+    },
+    "DecisionTree":{
+      "f1_macro":0.7974,
+      "accuracy":0.8529
+    },
+    "ComplementNB":{
+      "f1_macro":0.7826,
+      "accuracy":0.8535
+    },
+    "Dummy (majority)":{
+      "f1_macro":0.2002,
+      "accuracy":0.6678
+    }
+  }
+}
